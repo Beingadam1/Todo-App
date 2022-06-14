@@ -28,7 +28,7 @@ h1 {
 
 input[type='text'] {
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1.3px solid #000;
   background-color: transparent;
   outline: 0;
   width: 300px;
@@ -37,8 +37,12 @@ input[type='text'] {
   margin-bottom: 1rem;
 }
 
+input[type='text']:focus {
+  border-bottom-color: #1363df;
+}
+
 #add,
-#clear {
+#clear-todo {
   font-size: 0.9rem;
   padding: 0.4rem;
   cursor: pointer;
@@ -48,8 +52,8 @@ input[type='text'] {
   color: #fff;
 }
 
-#clear {
-  background-color: #000;
+#clear-todo {
+  background-color: #f24c4c;
 }
 
 form {

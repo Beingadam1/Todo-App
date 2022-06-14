@@ -14,21 +14,14 @@
   <body>
     <div class="container">
       <h1>Todo List</h1>
-      <form>
+      <form id="todo-form">
         <input type="text" id="todo-input" placeholder="Add Todo" />
         <input type="submit" value="Add Todo" id="add" />
       </form>
       <input type="text" id="filter" placeholder="Filter Todos" />
       <hr />
-      <div class="todos">
-        <div class="todo-item">
-          <span>Lorem ipsum dolor sit amet.</span><i class="fa fa-trash"></i>
-        </div>
-        <div class="todo-item">
-          <span>Lorem ipsum dolor sit amet.</span><i class="fa fa-trash"></i>
-        </div>
-      </div>
-      <input type="submit" value="Clear Todo" id="clear" />
+      <div class="todos"></div>
+      <input type="submit" value="Clear Todo" id="clear-todo" />
     </div>
     <script src="/app.js"></script>
   </body>
