@@ -5,10 +5,31 @@ const clearBtn = document.querySelector('#clear-todo');
 const todoCollection = document.querySelector('.todos');
 
 // All Event Listeners
+document.addEventListener('DOMContentLoaded', getTodo);
 form.addEventListener('submit', addTodo);
 filter.addEventListener('keyup', filterTodo);
 clearBtn.addEventListener('click', clearTodo);
 todoCollection.addEventListener('click', deleteTodo);
+
+// Get Todo from LS
+function getTodo() {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+
+  todos.forEach((todo) => {
+    const html = `
+    <div class="todo-item">
+          <span>${todo}</span><i class="fa fa-trash delete"></i>
+        </div>
+    `;
+
+    todoCollection.insertAdjacentHTML('beforeend', html);
+  });
+}
 
 // Add Todo
 function addTodo(e) {
@@ -25,8 +46,25 @@ function addTodo(e) {
 
     todoCollection.insertAdjacentHTML('beforeend', html);
 
+    // Store Todo
+    storeTodoInLS(todoInput.value);
+
     todoInput.value = '';
   }
+}
+
+// Store Todo In LS
+function storeTodoInLS(todo) {
+  let todos;
+  if (localStorage.getItem('todos') === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem('todos'));
+  }
+
+  todos.push(todo);
+
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 // Filter Todo
@@ -53,4 +91,11 @@ function deleteTodo(e) {
 // Clear Todo
 function clearTodo() {
   todoCollection.innerHTML = '';
+
+  // Clear from LS
+  clearTodoFromLS();
+}
+
+function clearTodoFromLS() {
+  localStorage.clear();
 }
